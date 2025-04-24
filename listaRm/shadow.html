@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exemplo Canvas</title>
+    <style>
+      canvas {
+        border: 1px solid #000;
+        background: #ffc;
+      }
+    </style>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.slim.js"
+      integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        var canvas1 = $("#canvas")[0];
+        var ctx = canvas1.getContext("2d");
+
+        // Parâmetros iniciais da sombra
+        var sombra = {
+          blur: 5,
+          offsetX: 10,
+          offsetY: 10,
+        };
+
+        // Função para desenhar o retângulo com a sombra
+        function desenhar() {
+          ctx.clearRect(0, 0, canvas1.width, canvas1.height); // Limpa o canvas
+
+          ctx.shadowColor = "black";
+          ctx.shadowBlur = sombra.blur;
+          ctx.shadowOffsetX = sombra.offsetX;
+          ctx.shadowOffsetY = sombra.offsetY;
+          ctx.strokeStyle = "#f00";
+          ctx.lineWidth = 2;
+          ctx.strokeRect(30, 30, 80, 40); // Desenha o retângulo
+        }
+
+        // Aumentar a sombra
+        $("button:first").click(function () {
+          sombra.blur += 5; // Aumenta o blur da sombra
+          sombra.offsetX += 5; // Aumenta o deslocamento X da sombra
+          sombra.offsetY += 5; // Aumenta o deslocamento Y da sombra
+          desenhar();
+        });
+
+        // Diminuir a sombra
+        $("button:last").click(function () {
+          if (sombra.blur > 0) sombra.blur -= 5; // Diminui o blur da sombra
+          if (sombra.offsetX > 0) sombra.offsetX -= 5; // Diminui o deslocamento X
+          if (sombra.offsetY > 0) sombra.offsetY -= 5; // Diminui o deslocamento Y
+          desenhar();
+        });
+
+        desenhar(); // Desenha o retângulo inicial
+      });
+    </script>
+  </head>
+  <body>
+    <h2>Controle de Sombra no Canvas</h2>
+    <button type="button">Ajustar</button>
+    <button type="button">Alterar</button>
+    <canvas id="canvas" width="400" height="400"> </canvas>
+  </body>
+</html>
