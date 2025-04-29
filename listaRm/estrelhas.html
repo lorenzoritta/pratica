@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<style>
+    canvas {
+        border: 1px solid #000;
+        background: #ffc;
+    }
+</style>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>exemplo canvas</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.js"
+        integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            estrelha(0,0,"red","red",5);
+            estrelha(20,50,"red","green",1);
+            function estrelha(xinicial, yinicial, corstroke, corfill, tamanho) {
+                var canvas1 = $("#canvas")[0]
+                var ctx = canvas1.getContext("2d");
+                ctx.beginPath();
+                ctx.translate(xinicial,yinicial);
+                ctx.strokeStyle = corstroke;
+                ctx.lineWidth = 2;
+                ctx.scale(tamanho,tamanho);
+                ctx.moveTo(50, 15);
+                ctx.lineTo(60, 30);
+                ctx.lineTo(76, 30);
+                ctx.lineTo(60, 40);
+                ctx.lineTo(73, 58);
+                ctx.lineTo(50, 45);
+                ctx.lineTo(30, 59);
+                ctx.lineTo(40, 40);
+                ctx.lineTo(25, 30);
+                ctx.lineTo(40, 30);
+                ctx.closePath();
+                ctx.stroke();
+                ctx.fillStyle = corfill;
+                ctx.fill();
+
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <canvas id="canvas" width="800" height="800">
+
+    </canvas>
+</body>
+
+</html>
